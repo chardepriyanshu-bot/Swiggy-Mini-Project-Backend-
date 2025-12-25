@@ -18,7 +18,7 @@ public class CardPayment implements Payment {
 			 System.out.println("Amount verified.Now, you can pay..");
 		 }
 		 else {
-			 System.out.println("Payment failed. Invalid amount or payment method");
+			 System.err.println("Payment failed. Invalid amount or payment method");
 			 System.exit(0);
 		 }
 	}

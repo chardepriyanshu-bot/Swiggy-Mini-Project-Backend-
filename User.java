@@ -28,7 +28,7 @@ public class User {
 			this.userName = userName;
 		}
 		else {
-			System.out.println("Invalid Name.");
+			System.err.println("Invalid Name.");
 			System.exit(0);
 		}
 	}
@@ -42,7 +42,7 @@ public class User {
 			this.mobileNumber=mobileNumber;
 		}
 		else {
-			System.out.println("Invalid Mobile Number.");
+			System.err.println("Invalid Mobile Number.");
 			System.exit(0);
 		}
 	}
@@ -56,13 +56,14 @@ public class User {
 			this.address = address;
 		}
 		else {
-			System.out.println("Invalid Address.");
+			System.err.println("Invalid Address.");
 			System.exit(0);
 		}
 	}
 	
 	public String displayDetails() {
-		return "Customer Name: "+userName+
+		return "--- Customer Details ---"
+				+ "\nCustomer Name: "+userName+
 				"\nMobile Numeber: "+mobileNumber+
 				"\nAddress: "+address;
 	}

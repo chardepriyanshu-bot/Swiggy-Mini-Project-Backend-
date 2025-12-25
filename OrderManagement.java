@@ -3,23 +3,30 @@ package com.project.Swiggy;
 import java.util.Random;
 
 public class OrderManagement {
-	 
-	public int orderId;
-	public FoodItem [] itemList;
-	public String orderStatus;
-	public double totalBill;
+	/*Here declared the non static variable with used of private access modifier to prevent the data from outside world
+	or class and data type as per their requirement.*/
+	private int orderId;
+	private FoodItem [] itemList;
+	private double totalBill;
+	Customer customer;
 	
-	
-	public OrderManagement(FoodItem[] item,String orderStatus) {
+	public OrderManagement() {
+		//Non-parameterized constructor to provide readable value to non static variable as per their data type.
+		this.orderId=0;
+		this.totalBill=0.0;
+	}
+	public OrderManagement(Customer customer,FoodItem[] item) {
+		/* These is parameterized constructor which has same name as class name 
+		 */
 		setOrderId();
-		setOrderStatus(orderStatus);
 		itemList=new FoodItem[item.length];
 		SetItem(item);
+		this.customer=customer;
 	}
 	
 	public void SetItem(FoodItem[] item) {
 		if(item.length==0) {
-			System.out.println("Menu List is empty.");
+			System.err.println("Menu List is empty.");
 			System.exit(0);
 		}
 		for(int i=0;i<item.length;i++) {
@@ -31,19 +38,7 @@ public class OrderManagement {
 		Random random=new Random();
 		this.orderId=random.nextInt() & Integer.MAX_VALUE;
 	}
-	
-	public void setOrderStatus(String orderStatus) {
-		if(!orderStatus.isEmpty() && !orderStatus.equalsIgnoreCase(null) && (
-				orderStatus.equalsIgnoreCase("Placed") || orderStatus.equalsIgnoreCase("Preparing") 
-				|| orderStatus.equalsIgnoreCase("Delivered") 
-				)) {
-			this.orderStatus=orderStatus;
-		}
-		else {
-			System.out.println("Please check order status.");
-			System.exit(0);
-		}
-	}
+
 	
 	public double calculate() {
 		
@@ -56,7 +51,9 @@ public class OrderManagement {
 	}
 	
 	public void displayOrderDetails() {
-		System.out.println("Order id: "+orderId);
+		System.out.println("Order No.: "+orderId);
+		System.out.println("Customer Name: "+customer.getUserName());
+
 		for(FoodItem e:itemList) {
 			if(e!=null) {
 				System.out.println("Food Item Name: "+e.getFoodItem());
